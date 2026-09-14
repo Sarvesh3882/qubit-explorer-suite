@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ComposerRouteImport } from './routes/composer'
+import { Route as ModulesModuleIdRouteImport } from './routes/modules.$moduleId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ComposerRoute = ComposerRouteImport.update({
   path: '/composer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ModulesModuleIdRoute = ModulesModuleIdRouteImport.update({
+  id: '/modules/$moduleId',
+  path: '/modules/$moduleId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/composer': typeof ComposerRoute
+  '/modules/$moduleId': typeof ModulesModuleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/composer': typeof ComposerRoute
+  '/modules/$moduleId': typeof ModulesModuleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/composer': typeof ComposerRoute
+  '/modules/$moduleId': typeof ModulesModuleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/composer'
+  fullPaths: '/' | '/composer' | '/modules/$moduleId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/composer'
-  id: '__root__' | '/' | '/composer'
+  to: '/' | '/composer' | '/modules/$moduleId'
+  id: '__root__' | '/' | '/composer' | '/modules/$moduleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComposerRoute: typeof ComposerRoute
+  ModulesModuleIdRoute: typeof ModulesModuleIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComposerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/modules/$moduleId': {
+      id: '/modules/$moduleId'
+      path: '/modules/$moduleId'
+      fullPath: '/modules/$moduleId'
+      preLoaderRoute: typeof ModulesModuleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComposerRoute: ComposerRoute,
+  ModulesModuleIdRoute: ModulesModuleIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
