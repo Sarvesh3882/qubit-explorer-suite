@@ -261,7 +261,14 @@ export function parseQiskit(code: string, fallback: Circuit): Circuit {
   const push = (type: GateType, q: number, q2?: number, angle?: number) => {
     if (q >= qubits || (q2 !== undefined && q2 >= qubits)) return;
     const col = q2 === undefined ? nextCol[q]! : Math.max(nextCol[q]!, nextCol[q2]!);
-    ops.push({ id: `p${uid++}`, type, q, q2, angle, col });
+    ops.push({
+      id: `p${uid++}`,
+      type,
+      q,
+      col,
+      ...(q2 === undefined ? {} : { q2 }),
+      ...(angle === undefined ? {} : { angle }),
+    });
     nextCol[q] = col + 1;
     if (q2 !== undefined) nextCol[q2] = col + 1;
   };
