@@ -34,17 +34,18 @@ export function AnalyticsPanel({ result }: { result: SimResult }) {
           <div>
             <div className="flex h-44 items-end gap-1.5 border-b border-l border-workspace-line pl-2">
               {shown.map((d) => (
-                <div key={d.label} className="group flex flex-1 flex-col items-center justify-end">
+                <div key={d.label} className="flex h-full flex-1 flex-col items-center justify-end">
                   <span className="mb-1 font-mono text-[10px] text-workspace-muted">
                     {(d.p * 100).toFixed(1)}
                   </span>
                   <div
                     className="w-full max-w-9 rounded-t bg-workspace-accent transition-all"
-                    style={{ height: `${Math.max(2, d.p * 100)}%` }}
+                    style={{ height: `${Math.max(3, d.p * 150)}px` }}
                   />
                 </div>
               ))}
             </div>
+
             <div className="mt-1.5 flex gap-1.5 pl-2">
               {shown.map((d) => (
                 <span
