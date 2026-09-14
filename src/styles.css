@@ -59,7 +59,33 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-workspace: var(--workspace);
+  --color-workspace-panel: var(--workspace-panel);
+  --color-workspace-elevated: var(--workspace-elevated);
+  --color-workspace-line: var(--workspace-line);
+  --color-workspace-foreground: var(--workspace-foreground);
+  --color-workspace-muted: var(--workspace-muted);
+  --color-workspace-accent: var(--workspace-accent);
+
+  --color-map: var(--map);
+  --color-map-line: var(--map-line);
+  --color-region-intro: var(--region-intro);
+  --color-region-algo: var(--region-algo);
+  --color-region-opt: var(--region-opt);
+  --color-region-hw: var(--region-hw);
+
+  --color-gate-hadamard: var(--gate-hadamard);
+  --color-gate-pauli: var(--gate-pauli);
+  --color-gate-rotation: var(--gate-rotation);
+  --color-gate-entangle: var(--gate-entangle);
+  --color-gate-meta: var(--gate-meta);
 }
+
 
 :root {
   --radius: 0.625rem;
@@ -141,4 +167,72 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+/* ---------------- QUBIT design system ---------------- */
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.004 95);
+  --foreground: oklch(0.22 0.012 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.012 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.012 260);
+  --primary: oklch(0.38 0.055 195);
+  --primary-foreground: oklch(0.98 0.005 95);
+  --secondary: oklch(0.945 0.008 95);
+  --secondary-foreground: oklch(0.28 0.015 260);
+  --muted: oklch(0.955 0.006 95);
+  --muted-foreground: oklch(0.5 0.012 250);
+  --accent: oklch(0.93 0.03 70);
+  --accent-foreground: oklch(0.3 0.04 60);
+  --destructive: oklch(0.53 0.17 27);
+  --border: oklch(0.9 0.008 90);
+  --input: oklch(0.9 0.008 90);
+  --ring: oklch(0.38 0.055 195);
+
+  --workspace: oklch(0.19 0.008 250);
+  --workspace-panel: oklch(0.235 0.009 250);
+  --workspace-elevated: oklch(0.275 0.01 250);
+  --workspace-line: oklch(0.33 0.012 250);
+  --workspace-foreground: oklch(0.94 0.004 250);
+  --workspace-muted: oklch(0.68 0.012 250);
+  --workspace-accent: oklch(0.72 0.11 68);
+
+  --map: oklch(0.975 0.008 95);
+  --map-line: oklch(0.62 0.02 250);
+  --region-intro: oklch(0.93 0.045 185);
+  --region-algo: oklch(0.94 0.05 95);
+  --region-opt: oklch(0.94 0.04 145);
+  --region-hw: oklch(0.93 0.035 25);
+
+  --gate-hadamard: oklch(0.52 0.09 245);
+  --gate-pauli: oklch(0.55 0.13 35);
+  --gate-rotation: oklch(0.48 0.08 195);
+  --gate-entangle: oklch(0.58 0.1 100);
+  --gate-meta: oklch(0.45 0.01 250);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+}
+
+@utility bg-map-grain {
+  background-image:
+    radial-gradient(circle at 1px 1px, oklch(0.55 0.01 250 / 0.09) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+@utility panel-dark {
+  background-color: var(--workspace-panel);
+  border: 1px solid var(--workspace-line);
+  border-radius: var(--radius);
 }
